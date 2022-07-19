@@ -2,7 +2,7 @@ class Checker
 {
 
    //This method is handing 3 different things like temparature check and state of charge and charge rate
-  /// we can divide these in to three diff classes and handle it.
+  /// we can divide these in to three diff methods and handle it.
     static bool batteryIsOk(float temperature, float soc, float chargeRate) {
         if(temperature < 0 || temperature > 45) {
             Console.WriteLine("Temperature is out of range!");
@@ -16,5 +16,52 @@ class Checker
         }
         return true;
     }
+
+}
+
+
+
+Refactored code
+
+class Checker
+{
+
+   //This method is handing 3 different things like temparature check and state of charge and charge rate
+  /// we can divide these in to three diff methods and handle it.
+    static bool batteryIsOk(float temperature, float soc, float chargeRate) {
+       bool isvalid = false;
+       
+       IsTemparatureInrange();
+       IsSOCInrange();
+       IsChargeRatevalid();
+       }
+    
+    private bool IsTemparatureInrange()
+    {
+     if(temperature < 0 || temperature > 45) {
+            Console.WriteLine("Temperature is out of range!");
+            return false;
+            }
+            return true;
+    }
+    
+      private bool IsSOCInrange()
+    {
+     if(soc < 20 || soc > 80) {
+            Console.WriteLine("State of Charge is out of range!");
+            return false;
+        }
+            return true;
+    }
+    
+      private bool IsChargeRatevalid()
+    {
+     if(chargeRate > 0.8) {
+            Console.WriteLine("Charge Rate is not valid!");
+            return false;
+        }
+            return true;
+    }
+
 
 }
